@@ -1,0 +1,12 @@
+node_modules/
+build/
+dist/
+*.exe
+*.obj
+*.o
+*.pdb
+.env
+.env.*
+!.env.example
+*.pem
+*.key
