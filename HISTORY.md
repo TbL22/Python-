@@ -33,4 +33,10 @@ git push --follow-tags origin main
 
 查看历史：`git log --oneline --decorate`。查看旧文件：`git show 提交编号:文件路径`。恢复单个文件前停止自动任务并检查未提交内容，再执行 `git restore --source 提交编号 -- 文件路径`；恢复会覆盖该文件当前内容，之后可以提交为新的修复记录。
 
-当前状态：脚本和任务已准备，尚未后台启动；GitHub 地址及同步方式待确定。
+GitHub 仓库：https://github.com/TbL22/Python- 。本地 main 已连接 origin/main。
+
+后台任务启动后每 5 秒保存已跟踪文件的变化，每分钟尝试同步 GitHub。日志在 `.git/history-output.log` 和 `.git/history-error.log`，进程编号记录在 `.git/history-process.id`。后台进程退出或电脑重启后，需要通过上述 VS Code 任务重新启动。不要在后台任务运行时重复启动 VS Code 历史任务。
+
+停止本次后台任务：读取 `.git/history-process.id`，在任务管理器核对对应 PowerShell 进程后结束它。手动提交或恢复文件前先停止任务。
+
+初始化标签 `setup-v0.1.0` 仅标记任务与历史工作流配置，不代表 App 第一阶段已经完成。
