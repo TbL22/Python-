@@ -19,7 +19,7 @@ python CampusPocket/chapter02.py
 ## 文件与版本
 
 - `CampusPocket/chapter02.py`：本次第二版交付，标签 `chapter02-v0.2.0`。
-- `main.py`：保留此前实现，不覆盖；此前标签 `chapter02-v0.1.0` 仍保留。
+- `main.py`：第一版已按要求改为基础写法，用 input、float、变量、算术运算和 if 判断；移除 math、try/except 和主动抛出异常。假定输入合法（消费不小于零、预算大于零、金额最多两位小数）。运行方式为 `python main.py`；旧实现仍保存在此前标签 `chapter02-v0.1.0` 中。
 - 当前没有 `chapter01.py`，未虚构上一章文件。因此无法执行题目所说的从 chapter01.py 复制这一步；收到真实上一章文件后可以补入目录。
 - 之前收到的第 3 章要求尚未实施，以这次更正的第 2 章文件为准。
 
@@ -42,3 +42,4 @@ python CampusPocket/chapter02.py
 2. 数据增多后，可在后续章节用列表保存多笔消费，再学习循环统一处理；本章仍只处理一笔。
 
 自动历史任务只处理已纳入 Git 的文件，运行方式见 HISTORY.md。电脑重启后需要重新启动。
+
