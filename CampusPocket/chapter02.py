@@ -1,42 +1,42 @@
-"""第 2 章：输入一笔消费，计算余额并给出预算提醒。"""
-
+# 第二版：第2章校园账本，非法金额处理留到第9章。
+# 假定消费不小于0、预算大于0，金额最多两位小数。
 print("=== CampusPocket 校园账本 ===")
 
-# 本章假定输入合法：消费不小于 0，预算大于 0，金额最多两位小数。
-# 非法金额的处理按照题目要求留到第 9 章。
-expense = float(input("请输入一笔消费金额（元）："))
-budget = float(input("请输入月度预算（元）："))
+# 输入一笔消费和月度预算，预算要大于0
+expense = float(input("请输入消费金额："))
+budget = float(input("请输入月度预算："))
 
-# 金额换算成整数分，避免小数误差影响还能消费的笔数。
-expense_cents = round(expense * 100)
-budget_cents = round(budget * 100)
-remaining_cents = budget_cents - expense_cents
-used_percent = expense_cents / budget_cents * 100
+# 计算余额和已用百分比
+remaining = budget - expense
+percent = expense / budget * 100
 
-print(f"本次消费：{expense_cents / 100:.2f} 元")
-print(f"月度预算：{budget_cents / 100:.2f} 元")
-print(f"剩余金额：{remaining_cents / 100:.2f} 元")
-print(f"已用比例：{used_percent:.1f}%")
+# .2f表示保留两位小数，.1f表示保留一位小数
+print(f"剩余金额：{remaining:.2f}元")
+print(f"已用比例：{percent:.1f}%")
 
-# 80% 和 100% 都属于中间档；判断使用真实金额，不使用舍入后的显示值。
-if expense_cents * 100 < budget_cents * 80:
-    print("预算提醒：低于 80%，预算充足。")
-elif expense_cents <= budget_cents:
-    print("预算提醒：80%—100%，接近或已用完预算，请节约开支。")
+# 根据百分比给出提醒
+if percent < 80:
+    print("预算充足")
+elif percent <= 100:
+    print("接近或已用完预算，请节约开支")
 else:
-    print("预算提醒：超过 100%，已经超出预算！")
+    print("已经超出预算")
 
-# 选做：判断整数元。
-if expense_cents % 100 == 0:
-    print("这笔消费是整数元。")
+# 除以1的余数为0，说明是整数元
+if expense % 1 == 0:
+    print("这笔消费是整数元")
 else:
-    print("这笔消费不是整数元。")
+    print("这笔消费不是整数元")
 
-# 选做：算出剩余预算还能支付几笔同额消费。
-if expense_cents == 0:
-    print("本次消费为 0 元，无法计算有限的同额消费笔数。")
-elif remaining_cents < 0:
-    print("还能再花 0 笔这样的消费（已经超出预算）。")
+# 计算还能支付几笔相同的消费
+if expense == 0:
+    print("消费为0元，不计算还能消费的笔数")
+elif remaining < 0:
+    print("还能再花0笔这样的消费")
 else:
-    more_count = remaining_cents // expense_cents
-    print(f"还能再花 {more_count} 笔这样的消费。")
+    # 换算成整数分，再用整除计算笔数，避免小数误差
+    remaining_fen = round(remaining * 100)
+    expense_fen = round(expense * 100)
+    count = remaining_fen // expense_fen
+    print("还能再花", count, "笔这样的消费")
+
